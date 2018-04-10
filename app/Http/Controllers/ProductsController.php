@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Product;
+
 class ProductsController extends Controller
 {
     /**
@@ -36,6 +38,20 @@ class ProductsController extends Controller
     public function store(Request $request)
     {
         // Almacena un nuevo producto
+        $options = [
+            'title' => $request->title,
+            'price' => $request->price,
+            'description' => $request->description
+        ];
+
+        if (Product::create($options)) 
+        {
+            return redirect('/');
+        }
+        else
+        {
+            return view('products.create');
+        }
     }
 
     /**
