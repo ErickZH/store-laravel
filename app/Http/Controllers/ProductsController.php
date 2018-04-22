@@ -25,8 +25,9 @@ class ProductsController extends Controller
      */
     public function create()
     {
+        $product = new Product;
         // Muestra un formulario para crear un producto
-        return view('products.create');
+        return view('products.create', compact('product'));
     }
 
     /**
@@ -44,7 +45,7 @@ class ProductsController extends Controller
             'description' => $request->description
         ];
 
-        if (Product::create($options)) 
+        if (Product::create($options))
         {
             return redirect('/');
         }
@@ -73,7 +74,9 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = Product::findOrFail($id);
+
+        return view('products.edit',compact('product'));
     }
 
     /**
@@ -85,7 +88,18 @@ class ProductsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $product = Product::findOrFail($id);
+
+        $product->title = $request->title;
+        $product->description = $request->description;
+        $product->price = $request->price;
+
+        if ($product->save()) {
+            return redirect('/');
+        }
+        else {
+            return view('products.edit',compact('product'));
+        }
     }
 
     /**
