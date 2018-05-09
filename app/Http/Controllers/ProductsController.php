@@ -8,6 +8,12 @@ use App\Product;
 
 class ProductsController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,6 +22,9 @@ class ProductsController extends Controller
     public function index()
     {
         // Muestra una coleccion de productos
+        $products = Product::paginate(9);
+
+        return view('products.index', compact('products'));
     }
 
     /**
@@ -64,6 +73,9 @@ class ProductsController extends Controller
     public function show($id)
     {
         // Muestra un producto
+        $product = Product::findOrFail($id);
+
+        return view('products.show', compact('product'));
     }
 
     /**
@@ -110,6 +122,8 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Product::destroy($id);
+
+        return redirect('/productos');
     }
 }
