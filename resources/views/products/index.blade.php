@@ -2,6 +2,9 @@
 
 @section('content')
 	<div class="container">
+		<div class="">
+			<products-component></products-component>
+		</div>
 		<div class="row">
 			@foreach($products as $product)
 			<div class="col-xs-12 col-md-6 col-xl-4">
