@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Product;
 
+use App\Http\Resources\ProductsCollection;
+
 class ProductsController extends Controller
 {
 
@@ -26,7 +28,7 @@ class ProductsController extends Controller
 
         if ($request->wantsJson())
         {
-            return $products->toJson();
+            return new ProductsCollection($products);
         }
         // $products = Product::paginate(9);
         //

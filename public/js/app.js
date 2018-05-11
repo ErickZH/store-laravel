@@ -47431,28 +47431,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             name: 'Productos Componente',
-            products: [{
-                title: 'Git',
-                description: 'Learn system version',
-                price: 90
-            }, {
-                title: 'Ruby',
-                description: 'Learn lenaguage Ruby',
-                price: 40
-            }, {
-                title: 'Java',
-                description: 'Learn lenaguage Java',
-                price: 50
-            }, {
-                title: 'Laravel',
-                description: 'Learn the Framework Top of PHP',
-                price: 35
-            }, {
-                title: 'FX Ruby',
-                description: 'Build UI with library FXRuby',
-                price: 25
-            }]
+            products: null,
+            endpoint: '/productos'
         };
+    },
+    created: function created() {
+        this.fetchProducts();
+    },
+
+    methods: {
+        fetchProducts: function fetchProducts() {
+            var _this = this;
+
+            axios.get(this.endpoint).then(function (response) {
+                console.log(response.data.data);
+                _this.products = response.data.data;
+            });
+        }
     }
 });
 
@@ -47587,7 +47582,9 @@ var render = function() {
         _vm._v(" "),
         _c("h4", { staticClass: "card-subtitle" }, [
           _vm._v(
-            "\n                " + _vm._s(_vm.product.price) + "\n            "
+            "\n                " +
+              _vm._s(_vm.product.humanPrice) +
+              "\n            "
           )
         ])
       ]),

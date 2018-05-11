@@ -8,7 +8,7 @@
                     </a>
                 </h2>
                 <h4 class="card-subtitle">
-                    {{ product.price }}
+                    {{ product.humanPrice }}
                 </h4>
             </header>
             <p class="card-text">
