@@ -19,11 +19,17 @@ class ProductsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         // Muestra una coleccion de productos
         $products = Product::paginate(9);
 
+        if ($request->wantsJson())
+        {
+            return $products->toJson();
+        }
+        // $products = Product::paginate(9);
+        //
         return view('products.index', compact('products'));
     }
 
