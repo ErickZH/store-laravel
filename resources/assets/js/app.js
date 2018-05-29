@@ -18,6 +18,7 @@ window.Vue = require('vue');
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 
 Vue.component('products-component', require('./components/products/ProductsComponent.vue'));
+Vue.component('add-product-btn', require('./components/products/AddToCartComponent.vue'));
 Vue.component('product-card-component', require('./components/products/ProductCardComponent.vue'));
 Vue.component('material-trasition-group', require('./components/animations/MaterialCollectionComponent.vue'));
 
