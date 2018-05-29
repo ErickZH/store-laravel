@@ -17,4 +17,14 @@ class ShoppingCart extends Model
     		return ShoppingCart::create();
     	}
     }
+
+    public function products()
+    {
+        return $this->belongsToMany('App\Product', 'product_in_shopping_carts');
+    }
+
+    public function productsCount()
+    {
+        return $this->products()->count();
+    }
 }

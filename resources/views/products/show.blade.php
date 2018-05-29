@@ -19,7 +19,11 @@
 					</p>
 				</div>
 				<div class="card-actions">
-					<button type="button" class="btn btn-success">Add cart</button>
+					{!! Form::open(['method' => 'POST', 'route' => 'in_shopping_carts.store']) !!}
+						<input type="hidden" value="{{ $product->id }}" name="product_id">
+						<button type="submit" class="btn btn-success">Add cart</button>
+					{!! Form::close() !!}
+					
 					@include('products.delete')
 				</div>
 			</div>
