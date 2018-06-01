@@ -3,7 +3,7 @@
         <div class="card p-2">
             <header>
                 <h2 class="card-title">
-                    <a href="#">
+                    <a :href="'/productos/'+product.id">
                         {{ product.title }}
                     </a>
                 </h2>

@@ -37,6 +37,7 @@ Vue.component('products-component', require('./components/products/ProductsCompo
 Vue.component('add-product-btn', require('./components/products/AddToCartComponent.vue'));
 
 Vue.component('product-counter-component', require('./components/shopping_cart/CounterComponent.vue'));
+Vue.component('products-shopping-component', require('./components/shopping_cart/ProductsShoppingCartComponent.vue'));
 
 Vue.component('product-card-component', require('./components/products/ProductCardComponent.vue'));
 
