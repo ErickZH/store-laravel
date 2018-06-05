@@ -39,16 +39,30 @@ class PayPal
 				"payment_method" => "paypal"
 			],
 			"redirect_urls" => [
-				"cancel_url" => "/",
-				"return_url" => "/"
+				"cancel_url" => URL::route('shopping_cart.show'),
+				"return_url" => URL::route('payments.execute')
 			]
 		];
 
 		$request->body = $body;
 
 		return $request;
-
 	}
 
 	// Ejecución
+	public function charge($amount)
+	{
+		return $this->client->execute($this->buildPaymentRequest($amount));
+	}
+
+	public function execute($paymentId, $payerId)
+	{
+		$paymentExecute = new PaymentExecuteRequest($paymentId);
+
+		$paymentExecute->body = [
+			'payer_id' => $payerId
+		];
+
+		return $this->client->execute($paymentExecute);
+	}
 }
