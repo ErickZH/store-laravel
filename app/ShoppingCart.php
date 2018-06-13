@@ -32,4 +32,9 @@ class ShoppingCart extends Model
     {
         return $this->products()->sum('price') / 100;
     }
+
+    public function amountInCents()
+    {
+        return $this->products()->sum('price');
+    }
 }
